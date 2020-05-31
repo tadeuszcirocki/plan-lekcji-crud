@@ -1,9 +1,32 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
 from wtforms.validators import DataRequired
+from model import Tytul, Prowadzacy, Przedmiot, Sala
 
-class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign In')
+class PrzedmiotForm(FlaskForm):
+    nazwa = StringField('Nazwa', validators=[DataRequired()])
+    ects = StringField('Ects', validators=[DataRequired()])
+    submit = SubmitField('Dodaj')
+    
+class SalaForm(FlaskForm):
+    nr = StringField('Nr', validators=[DataRequired()])
+    miejsca = StringField('Ilosc miejsc', validators=[DataRequired()])
+    submit = SubmitField('Dodaj')
+
+class TytulForm(FlaskForm):
+    nazwa = StringField('Nazwa', validators=[DataRequired()])
+    submit = SubmitField('Dodaj')    
+
+class ProwadzacyForm(FlaskForm):
+    imie = StringField('Imie', validators=[DataRequired()])
+    nazwisko = StringField('Nazwisko', validators=[DataRequired()])
+    tytul = SelectField('Tytul naukowy', choices = [(t.nazwa) for t in Tytul.query.order_by('nazwa')])
+    submit = SubmitField('Dodaj')
+
+class ZajecieForm(FlaskForm):
+    prowadzacy = SelectField('Prowadzacy', choices = [(p.nazwisko) for p in Prowadzacy.query.order_by('nazwisko')])
+    przedmiot = SelectField('Przedmiot', choices = [(p.nazwa) for p in Przedmiot.query.order_by('nazwa')])
+    sala = SelectField('Sala', choices = [(s.nr) for s in Sala.query.order_by('nr')])
+    dzien = SelectField('Dzien tygodnia', choices = [('poniedzialek'),('wtorek'),('sroda'),('czwartek'),('piatek')])
+    godzina = StringField('Godzina', validators=[DataRequired()])
+    submit = SubmitField('Dodaj')
