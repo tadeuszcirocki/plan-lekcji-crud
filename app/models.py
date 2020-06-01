@@ -31,7 +31,7 @@ class Prowadzacy(db.Model):
 
 class Tytul(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nazwa = db.Column(db.String(64), index=True, unique=True) 
+    tytulnauk = db.Column(db.String(64), index=True, unique=True) 
     prowadzacy = db.relationship('Prowadzacy', backref='tytul', lazy='dynamic')
 
     def __repr__(self):

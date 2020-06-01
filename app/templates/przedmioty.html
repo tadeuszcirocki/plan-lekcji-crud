@@ -1,0 +1,13 @@
+<html>
+<body>
+   <h1>Books</h1>
+   
+   <ol>
+       {% for p in przedmioty %}
+       <li> {{p.nazwa}}  {{p.ects}} </li>
+       
+       <br> <br>
+       {% endfor %}
+   </ol>
+</body>
+</html>

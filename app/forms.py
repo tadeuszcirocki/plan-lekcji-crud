@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
 from wtforms.validators import DataRequired
-from model import Tytul, Prowadzacy, Przedmiot, Sala
+from app.models import Tytul, Prowadzacy, Przedmiot, Sala
 
 class PrzedmiotForm(FlaskForm):
     nazwa = StringField('Nazwa', validators=[DataRequired()])
@@ -20,7 +20,7 @@ class TytulForm(FlaskForm):
 class ProwadzacyForm(FlaskForm):
     imie = StringField('Imie', validators=[DataRequired()])
     nazwisko = StringField('Nazwisko', validators=[DataRequired()])
-    tytul = SelectField('Tytul naukowy', choices = [(t.nazwa) for t in Tytul.query.order_by('nazwa')])
+    tytul = SelectField('Tytul naukowy', choices = [(t.tytulnauk) for t in Tytul.query.order_by('tytulnauk')])
     submit = SubmitField('Dodaj')
 
 class ZajecieForm(FlaskForm):

@@ -1,23 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Sign In</h1>
-    <form action="" method="post" novalidate>
+    <h1>EDYTUJ</h1>
+    <form action="{{ url_for('editPrzedmiot',przedmiot_id = przedmiot.id)}}" method="post">
         {{ form.hidden_tag() }}
         <p>
             {{ form.nazwa.label }}<br>
-            {{ form.nazwa(size=32) }}<br>
+            {{ form.nazwa(size=32,value=przedmiot.nazwa) }}<br>
             {% for error in form.nazwa.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form.ects.label }}<br>
-            {{ form.ects(size=32) }}<br>
+            {{ form.ects(size=64, value=przedmiot.ects) }}<br>
             {% for error in form.ects.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+       
         <p>{{ form.submit() }}</p>
+        <a href="{{ url_for('showBooks') }}">Wróć</a>
+
     </form>
 {% endblock %}
