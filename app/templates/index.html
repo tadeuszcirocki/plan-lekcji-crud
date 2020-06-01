@@ -2,5 +2,13 @@
 
 {% block content %}
     <h1>INDEX!</h1>
- 
+    <a href="{{url_for('showPrzedmioty')}}">
+        <button>Przedmioty</button>
+    </a>
+    <a href="{{url_for('showSale')}}">
+        <button>Sale</button>
+    </a>
+    <a href="{{url_for('showTytuly')}}">
+        <button>Tytuly</button>
+    </a>
 {% endblock %}

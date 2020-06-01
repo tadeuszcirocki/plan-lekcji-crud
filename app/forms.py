@@ -14,7 +14,7 @@ class SalaForm(FlaskForm):
     submit = SubmitField('Dodaj')
 
 class TytulForm(FlaskForm):
-    nazwa = StringField('Nazwa', validators=[DataRequired()])
+    tytulnauk = StringField('Nazwa', validators=[DataRequired()])
     submit = SubmitField('Dodaj')    
 
 class ProwadzacyForm(FlaskForm):

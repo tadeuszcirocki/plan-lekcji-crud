@@ -1,0 +1,27 @@
+<html>
+<body>
+   <h1>Sale</h1>
+   <a href="{{url_for('addSala')}}">
+        <button>Dodaj Sale</button>
+    </a>
+    <br>
+    
+   <ol>
+        {% for sala in sale %}
+       <li> {{sala.nr}}  {{sala.miejsca}} </li>
+       <a href="{{url_for('editSala', sala_id = sala.id )}}">
+            Edit
+        </a>
+        <a href="{{url_for('deleteSala', sala_id = sala.id )}}" style="margin-left: 10px;">
+            Delete
+        </a>
+        <br> <br>
+        {% endfor %}
+   </ol>
+   <a href="{{url_for('index')}}">
+    <br> <br>
+
+    <button>Wróć</button>
+</a>
+</body>
+</html>

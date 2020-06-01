@@ -4,6 +4,8 @@
    <a href="{{url_for('addPrzedmiot')}}">
         <button>Dodaj przedmiot</button>
     </a>
+    <br>
+    
    <ol>
         {% for przedmiot in przedmioty %}
        <li> {{przedmiot.nazwa}}  {{przedmiot.ects}} </li>
@@ -16,5 +18,10 @@
         <br> <br>
         {% endfor %}
    </ol>
+   <a href="{{url_for('index')}}">
+    <br> <br>
+
+    <button>Wróć</button>
+</a>
 </body>
 </html>

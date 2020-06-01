@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>EDYTUJ</h1>
+    <form action="{{ url_for('editSala',sala_id = sala.id)}}" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.nr.label }}<br>
+            {{ form.nr(size=32,value=sala.nr) }}<br>
+            {% for error in form.nr.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.miejsca.label }}<br>
+            {{ form.miejsca(size=64, value=sala.miejsca) }}<br>
+            {% for error in form.miejsca.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+       
+        <p>{{ form.submit() }}</p>
+        <a href="{{ url_for('showSale') }}">Wróć</a>
+
+    </form>
+{% endblock %}

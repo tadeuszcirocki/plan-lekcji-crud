@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>EDYTUJ</h1>
+    <form action="{{ url_for('editTytul',tytul_id = tytul.id)}}" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.tytulnauk.label }}<br>
+            {{ form.tytulnauk(size=32,value=tytul.tytulnauk) }}<br>
+            {% for error in form.tytulnauk.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        
+        <p>{{ form.submit() }}</p>
+        <a href="{{ url_for('showTytuly') }}">Wróć</a>
+
+    </form>
+{% endblock %}
