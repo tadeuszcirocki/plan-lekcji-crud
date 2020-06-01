@@ -21,9 +21,9 @@ class Sala(db.Model):
 
 class Prowadzacy(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    imie = db.Column(db.String(64), index=True, unique=False)       #dodać tytul
+    imie = db.Column(db.String(64), index=True, unique=False) 
     nazwisko = db.Column(db.String(64), index=True, unique=False)
-    tytul_id = db.Column(db.Integer, db.ForeignKey('tytul.id'))
+    tytul_id = db.Column(db.Integer, db.ForeignKey('tytul.id'),nullable=False)
     zajecia = db.relationship('Zajecie', backref='prowadzacy', lazy='dynamic')
 
     def __repr__(self):

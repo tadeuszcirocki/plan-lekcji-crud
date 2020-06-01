@@ -1,0 +1,37 @@
+<html>
+
+<body>
+    <h1>Prowadzacy</h1>
+    <a href="{{url_for('addProwadzacy')}}">
+        <button>Dodaj Prowadzacy</button>
+    </a>
+    <br><br>
+
+    <table>
+        <tr><th>imie</th> <th>nazwisko</th> <th>tytul naukowy</th></tr>
+        {% for p in prowadzacy %}
+        <tr>
+            <td>{{p.imie}}</td>
+            <td>{{p.nazwisko}}</td>
+            <td>{{p.tytul.tytulnauk}}</td>
+            <td><a href="{{url_for('editProwadzacy', prowadzacy_id = p.id )}}">
+                    Edytuj
+                </a>
+            </td>
+            <td>
+                <a href="{{url_for('deleteProwadzacy', prowadzacy_id = p.id )}}" style="margin-left: 10px;">
+                    Usun
+                </a>
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+    <a href="{{url_for('index')}}">
+        <br> <br>
+
+        <button>Wróć</button>
+    </a>
+</body>
+
+</html>

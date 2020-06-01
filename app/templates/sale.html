@@ -1,27 +1,36 @@
 <html>
-<body>
-   <h1>Sale</h1>
-   <a href="{{url_for('addSala')}}">
-        <button>Dodaj Sale</button>
-    </a>
-    <br>
-    
-   <ol>
-        {% for sala in sale %}
-       <li> {{sala.nr}}  {{sala.miejsca}} </li>
-       <a href="{{url_for('editSala', sala_id = sala.id )}}">
-            Edit
-        </a>
-        <a href="{{url_for('deleteSala', sala_id = sala.id )}}" style="margin-left: 10px;">
-            Delete
-        </a>
-        <br> <br>
-        {% endfor %}
-   </ol>
-   <a href="{{url_for('index')}}">
-    <br> <br>
 
-    <button>Wróć</button>
-</a>
+<body>
+    <h1>Sala</h1>
+    <a href="{{url_for('addSala')}}">
+        <button>Dodaj Sala</button>
+    </a>
+    <br><br>
+
+    <table>
+        <tr><th>numer</th> <th>ilosc miejsc</th> </tr>
+        {% for s in sale %}
+        <tr>
+            <td>{{s.nr}}</td>
+            <td>{{s.miejsca}}</td>
+            <td><a href="{{url_for('editSala', sala_id = s.id )}}">
+                    Edytuj
+                </a>
+            </td>
+            <td>
+                <a href="{{url_for('deleteSala', sala_id = s.id )}}" style="margin-left: 10px;">
+                    Usuń
+                </a>
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+    <a href="{{url_for('index')}}">
+        <br> <br>
+
+        <button>Wróć</button>
+    </a>
 </body>
+
 </html>

@@ -118,3 +118,45 @@ def deleteTytul(tytul_id):
     db.session.delete(tytulToDelete)
     db.session.commit()
     return redirect(url_for('showTytuly'))
+
+
+
+
+@app.route('/prowadzacy')
+def showProwadzacy():
+   prowadzacy = Prowadzacy.query.all()
+   return render_template("prowadzacy.html", prowadzacy=prowadzacy)
+
+@app.route('/prowadzacy/add/',methods=['GET','POST'])
+def addProwadzacy():
+    form = ProwadzacyForm()
+    if form.is_submitted():
+        tytul = db.session.query(Tytul).filter_by(tytulnauk=form.tytul.data).one()
+        prowadzacy = Prowadzacy(imie=form.imie.data, nazwisko=form.nazwisko.data, tytul=tytul)
+        db.session.add(prowadzacy)
+        db.session.commit()
+        return redirect(url_for('showProwadzacy'))
+    else:
+       return render_template('addProwadzacy.html', form=form)
+
+@app.route("/prowadzacy/<int:prowadzacy_id>/edit/", methods = ['GET', 'POST'])
+def editProwadzacy(prowadzacy_id):
+    form = ProwadzacyForm()
+    editedProwadzacy = db.session.query(Prowadzacy).filter_by(id=prowadzacy_id).one()
+    if request.method == 'POST':
+        tytul = db.session.query(Tytul).filter_by(tytulnauk=request.form['tytul']).one()
+        editedProwadzacy.imie=request.form['imie']
+        editedProwadzacy.nazwisko=request.form['nazwisko']
+        editedProwadzacy.tytul=tytul
+        db.session.add(editedProwadzacy)
+        db.session.commit()
+        return redirect(url_for('showProwadzacy'))
+    else:
+       return render_template('editProwadzacy.html', prowadzacy = editedProwadzacy, form=form)
+
+@app.route('/prowadzacy/<int:prowadzacy_id>/delete/', methods = ['GET','POST'])
+def deleteProwadzacy(prowadzacy_id):
+    prowadzacyToDelete = db.session.query(Prowadzacy).filter_by(id=prowadzacy_id).one()
+    db.session.delete(prowadzacyToDelete)
+    db.session.commit()
+    return redirect(url_for('showProwadzacy'))

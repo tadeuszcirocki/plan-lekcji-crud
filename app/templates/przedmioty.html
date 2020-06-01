@@ -1,27 +1,36 @@
 <html>
-<body>
-   <h1>Przedmioty</h1>
-   <a href="{{url_for('addPrzedmiot')}}">
-        <button>Dodaj przedmiot</button>
-    </a>
-    <br>
-    
-   <ol>
-        {% for przedmiot in przedmioty %}
-       <li> {{przedmiot.nazwa}}  {{przedmiot.ects}} </li>
-       <a href="{{url_for('editPrzedmiot', przedmiot_id = przedmiot.id )}}">
-            Edit
-        </a>
-        <a href="{{url_for('deletePrzedmiot', przedmiot_id = przedmiot.id )}}" style="margin-left: 10px;">
-            Delete
-        </a>
-        <br> <br>
-        {% endfor %}
-   </ol>
-   <a href="{{url_for('index')}}">
-    <br> <br>
 
-    <button>Wróć</button>
-</a>
+<body>
+    <h1>Przedmiot</h1>
+    <a href="{{url_for('addPrzedmiot')}}">
+        <button>Dodaj Przedmiot</button>
+    </a>
+    <br><br>
+
+    <table>
+        <tr><th>nazwa</th> <th>ects</th></tr>
+        {% for p in przedmioty %}
+        <tr>
+            <td>{{p.nazwa}}</td>
+            <td>{{p.ects}}</td>
+            <td><a href="{{url_for('editPrzedmiot', przedmiot_id = p.id )}}">
+                    Edytuj
+                </a>
+            </td>
+            <td>
+                <a href="{{url_for('deletePrzedmiot', przedmiot_id = p.id )}}" style="margin-left: 10px;">
+                    Usuń
+                </a>
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+    <a href="{{url_for('index')}}">
+        <br> <br>
+
+        <button>Wróć</button>
+    </a>
 </body>
+
 </html>

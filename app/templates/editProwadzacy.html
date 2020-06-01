@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>EDYTUJ</h1>
+    <form action="{{ url_for('editProwadzacy',prowadzacy_id = prowadzacy.id)}}" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.imie.label }}<br>
+            {{ form.imie(size=32, value=prowadzacy.imie) }}<br>
+            {% for error in form.imie.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.nazwisko.label }}<br>
+            {{ form.nazwisko(size=64, value=prowadzacy.nazwisko) }}<br>
+            {% for error in form.nazwisko.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p> 
+        <p>
+            {{ form.tytul.label }}<br>
+            {{ form.tytul }}<br>
+            {% for error in form.tytul.errors %}
+            <span style="color: red;">[{{ error }}{{form.tytul.data}}]</span>
+            {% endfor %}
+        </p>
+       
+        <p>{{ form.submit() }}</p>
+        <a href="{{ url_for('showProwadzacy') }}">Wróć</a>
+
+    </form>
+{% endblock %}

@@ -1,27 +1,35 @@
 <html>
+
 <body>
-   <h1>Tytul</h1>
-   <a href="{{url_for('addTytul')}}">
+    <h1>Tytul</h1>
+    <a href="{{url_for('addTytul')}}">
         <button>Dodaj Tytul</button>
     </a>
-    <br>
-    
-   <ol>
-        {% for tytul in tytuly %}
-       <li> {{tytul.tytulnauk}} </li>
-       <a href="{{url_for('editTytul', tytul_id = tytul.id )}}">
-            Edit
-        </a>
-        <a href="{{url_for('deleteTytul', tytul_id = tytul.id )}}" style="margin-left: 10px;">
-            Delete
-        </a>
-        <br> <br>
-        {% endfor %}
-   </ol>
-   <a href="{{url_for('index')}}">
-    <br> <br>
+    <br><br>
 
-    <button>Wróć</button>
-</a>
+    <table>
+        <tr><th>nazwa</th>  </tr>
+        {% for t in tytuly %}
+        <tr>
+            <td>{{t.tytulnauk}}</td>
+            <td><a href="{{url_for('editTytul', tytul_id = t.id )}}">
+                    Edytuj
+                </a>
+            </td>
+            <td>
+                <a href="{{url_for('deleteTytul', tytul_id = t.id )}}" style="margin-left: 10px;">
+                    Usuń
+                </a>
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+    <a href="{{url_for('index')}}">
+        <br> <br>
+
+        <button>Wróć</button>
+    </a>
 </body>
+
 </html>

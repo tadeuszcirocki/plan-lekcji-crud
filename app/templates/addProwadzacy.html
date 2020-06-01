@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>DODAJ</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.imie.label }}<br>
+            {{ form.imie(size=32) }}<br>
+            {% for error in form.imie.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.nazwisko.label }}<br>
+            {{ form.nazwisko(size=64) }}<br>
+            {% for error in form.nazwisko.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p> 
+        <p>
+            {{ form.tytul.label }}<br>
+            {{ form.tytul }}<br>
+            {% for error in form.tytul.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+       
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
