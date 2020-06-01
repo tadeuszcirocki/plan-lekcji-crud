@@ -1,13 +1,20 @@
 <html>
 <body>
-   <h1>Books</h1>
-   
+   <h1>Przedmioty</h1>
+   <a href="{{url_for('addPrzedmiot')}}">
+        <button>Dodaj przedmiot</button>
+    </a>
    <ol>
-       {% for p in przedmioty %}
-       <li> {{p.nazwa}}  {{p.ects}} </li>
-       
-       <br> <br>
-       {% endfor %}
+        {% for przedmiot in przedmioty %}
+       <li> {{przedmiot.nazwa}}  {{przedmiot.ects}} </li>
+       <a href="{{url_for('editPrzedmiot', przedmiot_id = przedmiot.id )}}">
+            Edit
+        </a>
+        <a href="{{url_for('deletePrzedmiot', przedmiot_id = przedmiot.id )}}" style="margin-left: 10px;">
+            Delete
+        </a>
+        <br> <br>
+        {% endfor %}
    </ol>
 </body>
 </html>
