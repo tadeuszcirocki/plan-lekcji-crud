@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>DODAJ</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.prowadzacy.label }}<br>
+            {{ form.prowadzacy() }}<br>
+            {% for error in form.prowadzacy.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.przedmiot.label }}<br>
+            {{ form.przedmiot() }}<br>
+            {% for error in form.przedmiot.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p> 
+        <p>
+            {{ form.sala.label }}<br>
+            {{ form.sala }}<br>
+            {% for error in form.sala.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.dzien.label }}<br>
+            {{ form.dzien }}<br>
+            {% for error in form.dzien.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.godzina.label }}<br>
+            {{ form.godzina }}<br>
+            {% for error in form.godzina.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+       
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

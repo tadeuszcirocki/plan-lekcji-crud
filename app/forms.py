@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, IntegerField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Regexp
 from app.models import Tytul, Prowadzacy, Przedmiot, Sala
 
 class PrzedmiotForm(FlaskForm):
@@ -28,5 +28,5 @@ class ZajecieForm(FlaskForm):
     przedmiot = SelectField('Przedmiot', choices = [(p.nazwa) for p in Przedmiot.query.order_by('nazwa')])
     sala = SelectField('Sala', choices = [(s.nr) for s in Sala.query.order_by('nr')])
     dzien = SelectField('Dzien tygodnia', choices = [('poniedzialek'),('wtorek'),('sroda'),('czwartek'),('piatek')])
-    godzina = StringField('Godzina', validators=[DataRequired()])
+    godzina = StringField('Godzina', validators=[DataRequired(),Regexp(regex='xd',message='godzina np 9:00 16:20')])
     submit = SubmitField('Dodaj')

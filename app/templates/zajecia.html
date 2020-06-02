@@ -1,0 +1,44 @@
+<html>
+
+<body>
+    <h1>Zajecia</h1>
+    <a href="{{url_for('addZajecia')}}">
+        <button>Dodaj Zajecia</button>
+    </a>
+    <br><br>
+
+    <table>
+        <tr><th>prowadzacy</th> <th>przedmiot</th> <th>sala</th><th>dzien</th><th>godzina</th></tr>
+        {% for z in zajecia %}
+        <tr>
+            <td>{{z.prowadzacy.nazwisko}}</td>
+            <td>{{z.przedmiot.nazwa}}</td>
+            <td>{{z.sala.nr}}</td>
+            <td>{{z.dzien}}</td>
+            <td>{{z.godzina}}</td>
+
+            
+            <td><a href="{{url_for('editZajecia', zajecia_id = z.id )}}">
+                    Edytuj
+                </a>
+            </td>
+            <td>
+                <a href="{{url_for('deleteZajecia', zajecia_id = z.id )}}" style="margin-left: 10px;">
+                    Usun
+                </a>
+            </td>
+            
+            
+            
+        </tr>
+
+        {% endfor %}
+    </table>
+    <a href="{{url_for('index')}}">
+        <br> <br>
+
+        <button>Wróć</button>
+    </a>
+</body>
+
+</html>
